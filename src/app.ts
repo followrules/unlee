@@ -1,12 +1,13 @@
 import {getBalanceAccount, getInfoToken, } from "./controller/solanaConnection";
-import { ResponseTokenInfo } from "./model/ResponseTokenInfo";
+import { DataDetailToken } from "./model/ResponseTokenInfo";
 
 /**
  * wen moon
  */
 
 async function init() {
-    const fafa: ResponseTokenInfo = await getInfoToken();
+    const fafa: DataDetailToken = await getInfoToken();
+    console.log(JSON.stringify(fafa))
 };
 
 init();

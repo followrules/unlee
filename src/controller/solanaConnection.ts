@@ -1,7 +1,12 @@
-import { Connection, PublicKey } from "@solana/web3.js";
+import {
+  Connection,
+  PublicKey,
+  RpcResponseAndContext,
+  TokenAmount,
+} from "@solana/web3.js";
 import { Metaplex } from "@metaplex-foundation/js";
 import { programs } from "@metaplex/js";
-import { ResponseTokenInfo } from "../model/ResponseTokenInfo";
+import { DataDetailToken } from "../model/ResponseTokenInfo";
 
 import "dotenv/config";
 
@@ -23,15 +28,21 @@ export function getBalanceAccount() {
     });
 }
 
-export const getInfoToken = async(): Promise<ResponseTokenInfo> => {
+export const getInfoToken = async (): Promise<DataDetailToken> => {
   const metaplex = Metaplex.make(connect);
-  const tokenMetadata = await metaplex
-    .nfts()
-    .findByMint({
-      mintAddress: new PublicKey(
-        "5hmf8Jt9puwoqiFQTb3vr22732ZTKYRLRw9Vo7tN3rcz"
-      ),
-    });
-    const resp: ResponseTokenInfo= JSON.parse(JSON.stringify(tokenMetadata));
-    return resp;
-}
+  const totalSupply: RpcResponseAndContext<TokenAmount> =
+    await connect.getTokenSupply(
+      new PublicKey("5hmf8Jt9puwoqiFQTb3vr22732ZTKYRLRw9Vo7tN3rcz")
+    );
+  const tokenMetadata = await metaplex.nfts().findByMint({
+    mintAddress: new PublicKey("5hmf8Jt9puwoqiFQTb3vr22732ZTKYRLRw9Vo7tN3rcz"),
+  });
+  const response: DataDetailToken = {
+    totalSupply: totalSupply.value.amount,
+    totalHolder: "",
+    circSupply: "",
+    detailToken: JSON.parse(JSON.stringify(tokenMetadata)),
+  };
+  // const resp: ResponseTokenInfo= JSON.parse(JSON.stringify(tokenMetadata));
+  return response;
+};

@@ -1,3 +1,10 @@
+export interface DataDetailToken{
+    detailToken: ResponseTokenInfo,
+    totalSupply?: string,
+    circSupply?: string,
+    totalHolder?: string
+}
+
 export interface ResponseTokenInfo {
   model?: string;
   updateAuthorityAddress?: string;
