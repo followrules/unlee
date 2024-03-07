@@ -1,3 +1,10 @@
-const hello:string = "hellowwww";
+import {getBalanceAccount, getInfoToken, } from "./controller/solanaConnection";
+import { ResponseTokenInfo } from "./model/ResponseTokenInfo";
 
-console.log(hello);
+
+async function init() {
+    const fafa: ResponseTokenInfo = await getInfoToken();
+    console.log(fafa)
+};
+
+init();
