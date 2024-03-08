@@ -2,7 +2,14 @@ export interface DataDetailToken{
     detailToken: ResponseTokenInfo,
     totalSupply?: string,
     circSupply?: string,
-    totalHolder?: string
+    totalHolder?: string,
+    topHolders?: TopHolders[]
+}
+
+export interface TopHolders{
+  address: string,
+  percentage: string,
+  totalAmount: string
 }
 
 export interface ResponseTokenInfo {

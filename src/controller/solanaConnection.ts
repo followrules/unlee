@@ -46,18 +46,19 @@ export const getInfoToken = async (): Promise<DataDetailToken> => {
   const detailsToken:ResponseTokenInfo = JSON.parse(JSON.stringify(tokenMetadata));
   const decimal = "1e"+detailsToken.mint.decimals;
   const accountInfo = await connect.getAccountInfo(callToken);
-await  metaplex.nfts().findAllByOwner({
-  owner: metaplex.identity().publicKey
-}).then(e=>{
-  console.log(e)
-})
+// await  metaplex.nfts().findAllByOwner({
+//   owner: metaplex.identity().publicKey
+// }).then(e=>{
+//   console.log(e)
+// })
   // const tokenAccounts = await connect.getTokenAccountsByOwner(callToken, { programId: new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA") });
-  const tokenAccounts: any = await connect.getTokenAccountsByOwner(
-    callToken,
-    { programId: TOKEN_PROGRAM_ID }
-  );
+  const tokenHolders = await connect.getTokenLargestAccounts(callToken)
   // console.log(tokenAccounts)
-  const holders: string[] = tokenAccounts.value.map((account: TokenAccount) => account.owner.toBase58());
+  // const holders: string[] = tokenHolders.value.map((account: TokenAccount) => account.owner.toBase58());
+  tokenHolders.value.map(e=>{
+    e
+  })
+  // console.log(tokenHolders)
 
 
   // console.log(accountInfo)
