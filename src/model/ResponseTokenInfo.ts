@@ -25,7 +25,7 @@ export interface ResponseTokenInfo {
   programmableConfig?: null;
   address?: string;
   metadataAddress?: string;
-  mint?: Mint;
+  mint: Mint;
 }
 
 export interface CreatorElement {
@@ -59,7 +59,7 @@ export interface Mint {
   address?: string;
   mintAuthorityAddress?: null;
   freezeAuthorityAddress?: null;
-  decimals?: number;
+  decimals: number;
   supply?: Supply;
   isWrappedSol?: boolean;
   currency?: Currency;
