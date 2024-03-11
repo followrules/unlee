@@ -3,13 +3,14 @@ export interface DataDetailToken{
     totalSupply?: string,
     circSupply?: string,
     totalHolder?: string,
+    trxCount?: number,
     topHolders?: TopHolders[]
 }
 
 export interface TopHolders{
   address: string,
   percentage: string,
-  totalAmount: string
+  total_amount: string
 }
 
 export interface ResponseTokenInfo {
